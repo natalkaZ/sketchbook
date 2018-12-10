@@ -1,0 +1,6 @@
+:host{
+    flex-grow: 1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

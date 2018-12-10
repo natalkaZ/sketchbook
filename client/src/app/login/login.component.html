@@ -1,0 +1,25 @@
+<mat-card class="text-center">
+  <mat-card-title>Authorization</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)=onSubmit() class="login-form">
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Your email" formControlName="email">
+        <mat-error *ngIf="form.get('email').invalid && form.get('email').touched">
+          <span *ngIf="form.get('email').errors['required']">Email is required</span>
+          <span *ngIf="form.get('email').errors['pattern']">Email is not valid</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Password" formControlName="password">
+        <mat-error *ngIf="form.get('password').invalid && form.get('password').touched">
+          <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+              Password need to be at least {{form.get('password').errors['minlength']['requiredLength']}} symbols.
+          </span>
+          <span *ngIf="form.get('password').errors['invalidPassword']">{{form.get('password').errors['invalidPassword']}}</span>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid || form.disabled">Log in</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+

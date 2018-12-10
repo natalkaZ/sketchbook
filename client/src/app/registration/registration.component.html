@@ -1,0 +1,54 @@
+<mat-card class="text-center">
+  <mat-card-title>Registration</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)=onRegister() class="login-form">
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Name" formControlName="name">
+        <mat-error *ngIf="form.get('name').invalid && form.get('name').touched">
+          <span *ngIf="form.get('name').errors['required']">Name is required</span>
+          <span *ngIf="form.get('name').errors['pattern']">Name is not valid</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput type="email" placeholder="E-mail" formControlName="email">
+        <mat-error *ngIf="form.get('email').invalid && form.get('email').touched">
+          <span *ngIf="form.get('email').errors['required']">E-mail is required</span>
+          <span *ngIf="form.get('email').errors['pattern']">E-mail is not valid</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput type="tel" placeholder="Phone" formControlName="phone">
+        <mat-error *ngIf="form.get('phone').invalid && form.get('phone').touched">
+          <span *ngIf="form.get('phone').errors['required']">Phone is required</span>
+          <span *ngIf="form.get('phone').errors['pattern']">Phone is not valid</span>
+        </mat-error>
+      </mat-form-field>
+      <!-- add photo?? -->
+      <mat-form-field class="full-width">
+        <input matInput type="url" placeholder="Add your photo" formControlName="avatar">
+      </mat-form-field>
+      
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Password" formControlName="password">
+        <mat-error *ngIf="form.get('password').invalid && form.get('password').touched">
+          <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+              Password need to be at least {{form.get('password').errors['minlength']['requiredLength']}} symbols.
+          </span>
+          <span *ngIf="form.get('password').errors['invalidPassword']">{{form.get('password').errors['invalidPassword']}}</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Confirm password" formControlName="confirmPassword">
+        <mat-error *ngIf="form.get('confirmPassword').invalid && form.get('confirmPassword').touched">
+          <span *ngIf="form.get('confirmPassword').errors['required']">Confirm password is required</span>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Create account</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+

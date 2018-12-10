@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$notebook-theme-primary: mat-palette($mat-teal);
+$notebook-theme-accent:  mat-palette($mat-orange, A200, A100, A400);
+$notebook-theme: mat-light-theme($notebook-theme-primary, $notebook-theme-accent);
+
+@include angular-material-theme($notebook-theme);

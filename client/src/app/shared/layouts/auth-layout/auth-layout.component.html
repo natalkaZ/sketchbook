@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a routerLink="/" class="main-link">
+      <img class="main-icon" type="img/png" src="favicon_white.png" alt="Notebook">Notebook
+    </a>
+    <span class="example-spacer"></span>
+    <a mat-button routerLink="/login" routerLinkActive="active">
+      <mat-icon class="example-icon">exit_to_app</mat-icon>Log In
+    </a>
+    <a mat-button routerLink="/registration" routerLinkActive="active">
+      <mat-icon class="example-icon">account_circle</mat-icon>Registration
+    </a>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
