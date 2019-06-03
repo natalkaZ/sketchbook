@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
     "angular-material-fileupload": "^1.0.1",
+    "clone": "^2.1.2",
     "core-js": "^2.5.4",
     "graceful-fs": "^4.1.13",
     "gsap": "^2.1.3",
