@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const Scema = mongoose.Schema
 
 const UserScema = new Scema({
+    // userId: {
+    //     type: Number,
+    //     default: ''
+    // },
     name: {
         type: String,
         required: true
@@ -38,5 +42,14 @@ const UserScema = new Scema({
     // ]
 
 })
+
+UserScema.methods.toAuthJSON = function(){
+    return {
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        avatarSrc: this.avatarSrc
+    };
+};
 
 module.exports = mongoose.model('users', UserScema)

@@ -1,0 +1,42 @@
+<div class="mat-dialog-wrapper" [ngStyle]="{backgroundColor: this.noteColor}">
+  <button mat-icon-button>
+    <mat-icon aria-label="Close note" (click)="cansel()" mat-dialog-close>close</mat-icon>
+  </button>
+  <h2 mat-dialog-title>{{isNew? 'Add new' : 'Details of your' }} note</h2>
+  <form [formGroup]="form" (ngSubmit)=onSubmit() class="login-form">
+    <mat-dialog-content>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Enter title of your note" formControlName="title">
+        <mat-error *ngIf="form.get('title').invalid && form.get('title').touched">
+          <span *ngIf="form.get('title').errors['required']">Title is required</span>
+          <span *ngIf="form.get('title').errors['pattern']">Title is not valid</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <textarea matInput cdkTextareaAutosize placeholder="Enter description" formControlName="description"
+          #cfcAutosize="cdkTextareaAutosize">
+        </textarea>
+        <mat-error *ngIf="form.get('description').invalid && form.get('description').touched">
+          <span *ngIf="form.get('description').hasError('maxlength')">Description can't be more than 100 characters!</span>
+        </mat-error>
+      </mat-form-field>
+      <input type="file" placeholder="Upload image" formControlName="image" class="hidden" (change)="onFileUpload($event)"
+        #input>
+      <button mat-raised-button type="button" color="primary" [disabled]="form.disabled" (click)="upload()">upload
+        image
+      </button>
+    </mat-dialog-content>
+    <mat-dialog-content>
+      <img class="preview-image" [src]="imagePreview" *ngIf="imagePreview">
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button *ngIf="this.isNew" mat-raised-button type="submit" color="accent" 
+              (click)="add()" [disabled]="form.invalid || form.disabled">add
+      </button>
+      <button *ngIf="!this.isNew" mat-raised-button type="submit" color="accent" 
+              (click)="save()" [disabled]="form.invalid || form.disabled">edit
+      </button>
+      <button mat-raised-button type="reset" color="warn" (click)="cansel()" mat-dialog-close>cansel</button>
+    </mat-dialog-actions>
+  </form>
+</div>

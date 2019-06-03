@@ -6,13 +6,13 @@ const keys = require('../config/keys')
 
 const options = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: keys.jwt
-
+    secretOrKey: keys.jwt,
+    userProperty: 'payload'
 }
 
-module.exports = passport =>{
+module.exports = passport => {
     passport.use(
-        new JwtStrategy(options, async (payload, done)=>{
+        new JwtStrategy(options, async (payload, done) => {
             try{
                 const user = await User.findById(payload.userId).select('email id')
 

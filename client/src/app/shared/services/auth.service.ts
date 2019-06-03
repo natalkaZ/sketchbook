@@ -10,40 +10,94 @@ import { User } from './interfaces';
 })
 export class AuthService {
   private token = null;
+  _id: any;
+  imagePreview = '';
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
 
-  register(user: User): Observable<User>{
-    return this.http.post<User>('/api/auth/register', user)
+  register(user: User): Observable<User> {
+    return this.http.post<User>('/api/auth/register', user);
   }
 
-  login(user: User): Observable<{token: string}>{
-    return this.http.post<{token:string}>('/api/auth/login', user)
+  login(user: User): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>('/api/auth/login', user)
       .pipe(
         tap(
-          ({token}) => {
-            localStorage.setItem('auth-token', token)
-            this.setToken(token)
+          ({ token }) => {
+            localStorage.setItem('auth-token', token);
+            this.setToken(token);
           }
         )
-      )
+      );
   }
 
-  setToken(token: String){
-    this.token = token
+  profile(): Observable<{ token: string }> {
+    return this.http.get<{ token: string }>('/api/auth/profile', { headers: { Authorization: `Bearer ${this.getToken()}` } });
   }
 
-  getToken():string{
-    return this.token
+  setToken(token: String) {
+    this.token = token;
   }
 
-  isAuthenticated(): boolean{
-    return !!this.token
+  saveToken(token: string): void {
+    localStorage.setItem('auth-token', token);
+    this.token = token;
   }
 
-  logOut(){
-    this.setToken(null)
-    localStorage.clear()
+  getToken(): string {
+    if (!this.token) {
+      this.token = localStorage.getItem('auth-token');
+    }
+    return this.token;
   }
-  
+
+  isAuthenticated(): boolean {
+    return !!this.token;
+  }
+
+  logOut() {
+    this.setToken(null);
+    localStorage.clear();
+  }
+
+  public getUserDetails(): User {
+    const token = this.getToken();
+    let payload;
+    if (token) {
+      payload = token.split('.')[1];
+      payload = window.atob(payload);
+      return JSON.parse(payload);
+    } else {
+      return null;
+    }
+  }
+
+  public getUserProfile() {
+    const user = this.getUserDetails();
+    this.imagePreview = this.getUserDetails().avatarSrc;
+    return user;
+  }
+
+  updateUserProfile(_id: any, name: string, phone: string, image?: File): Observable<{ token: string }> {
+
+    const fd = new FormData();
+
+    if (image) {
+      fd.append('image', image, image.name);
+    }
+
+    fd.append('name', name);
+    fd.append('phone', phone);
+
+    return this.http.put<{ token: string }>('/api/auth/profile', fd)
+      .pipe(
+        tap(
+          ({ token }) => {
+            localStorage.setItem('auth-token', token);
+            this.setToken(token);
+          }
+        )
+      );
+  }
+
 }

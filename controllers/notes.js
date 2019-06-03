@@ -33,7 +33,6 @@ module.exports.showNotesList = async function(req,res){ //byUserId
         .sort({date: -1})
         .skip(+req.query.offset)
         .limit(+req.query.limit)
-
         res.status(200).json(notes)
     } catch(e){
         errorHandler(res, e)
@@ -42,7 +41,7 @@ module.exports.showNotesList = async function(req,res){ //byUserId
 
 module.exports.addNewNote = async function(req, res){
     const note = new Note({
-        name: req.body.name,
+        title: req.body.title,
         description: req.body.description,
         date: req.body.date,
         imageSrc: req.file ? req.file.path : '',
@@ -68,7 +67,8 @@ module.exports.getNoteById = async function(req, res){
 
 module.exports.editNote = async function(req, res){
     const updeted = {
-        name: req.body.name,
+        title: req.body.title,
+        description: req.body.description
     }
 
     if(req.file){

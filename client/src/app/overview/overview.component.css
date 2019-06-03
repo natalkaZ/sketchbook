@@ -1,0 +1,172 @@
+:host {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  flex-grow: 1;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  background-image: url(rip_jobs.png);
+}
+
+.mat-card-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+}
+
+.mat-card-header .mat-icon-button {
+  margin: -11px 0;
+}
+
+.note-date {
+  width: 75%;
+  margin-top: 0;
+}
+
+.note-description {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.add-button {
+  position: absolute;
+  right: 50px;
+  bottom: 95px;
+}
+
+.example-list.cdk-drop-list div {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.example-list {
+  min-height: 60px;
+  overflow: auto;
+  width: 100%;
+  height: auto;
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: absolute;
+  text-align: 0;
+  top: 0;
+  bottom: 57px;
+}
+
+.example-box {
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  font-size: 14px;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  width: 200px;
+  height: 200px;
+}
+
+.cdk-drag {
+  height: 200px;
+  margin: 3.33%;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.mat-card-actions {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.mat-card-actions a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+}
+
+mat-card-content {
+  justify-content: center;
+}
+
+/* green card - rgb(202, 244, 185);*/
+/* yellow -  background: rgb(247, 233, 153);*/
+/* pink - rgb(255, 189, 163);*/
+
+.mat-card {
+  color: #4b453c;
+}
+
+.cdk-drag:nth-child(3n) .mat-card {
+  background: rgb(202, 244, 185) !important;
+  transform: rotate(6deg);
+}
+
+.cdk-drag:nth-child(3n+1) .mat-card {
+  background: rgb(247, 233, 153) !important;
+  transform: rotate(4deg);
+}
+
+.cdk-drag:nth-child(3n-1) .mat-card {
+  background: rgb(255, 189, 163) !important;
+  transform: rotate(-3deg);
+}
+
+.mat-button {
+  border-radius: 20px;
+}
+
+.delete-icon {
+  position: absolute !important;
+  top: 7.5px;
+  right: 7.5px;
+}
+
+/* Adaptive*/
+@media only screen and (max-width: 640px) {
+
+  .main-link,
+  .example-spacer {
+    display: none;
+  }
+
+  .nav-links {
+    flex: 1 1 auto;
+    padding-left: 0;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .example-list.cdk-drop-list div {
+    margin-bottom: 20px;
+  }
+
+  .example-list {
+    margin-top: 20px;
+  }
+}

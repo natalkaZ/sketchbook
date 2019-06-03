@@ -1,12 +1,28 @@
 html, body { 
     height: 100%;
 }
+
 body { 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-family: Englebert, Roboto, "Helvetica Neue", sans-serif; 
     display: flex;
     flex-direction: column;
     margin: 0; 
     padding: 0;
+}
+
+.mat-card, .mat-form-field, .mat-button, .mat-raised-button, 
+.mat-toolbar, .mat-card-content, .mat-dialog-title, .upload-button{
+    font-family: Englebert, Roboto, "Helvetica Neue", sans-serif; 
+    font-size: 16px;
+}
+
+.mat-toolbar-row{
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+.overview .mat-card-header-text{
+    width: 100% !important;
+    text-align: center;
 }
 
 .text-center{
@@ -15,4 +31,32 @@ body {
 
 .full-width{
     width: 100%;
+}
+
+.mat-dialog-container{
+    padding: 0 !important;
+    overflow: none;
+}
+
+.mat-dialog-wrapper{
+    position: relative;
+    padding: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.mat-drawer-content{
+    overflow: hidden !important;
+}
+
+.tooltip{
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: rotate(360deg);
+    transition: all .3s;
+}
+
+.tooltip:hover{
+    transform: rotate(180deg);
 }

@@ -1,0 +1,152 @@
+:host {
+  flex-grow: 1;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+  background-image: url(greyfloral.png);
+}
+
+
+svg {
+  width: 75%;
+}
+
+/* svg path {
+  transition: d 0.35s;
+} */
+
+.container{
+  width: 50%;
+  height: 100vh;
+  padding-top: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.bottom {
+  text-align: center;
+  /* margin-top: 0em; */
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.bottom h2 {
+  font-family: "Rokkitt", sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 30px;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0 auto 0.25em;
+}
+
+.bottom p {
+  color: #777;
+  letter-spacing: 0.1em;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 auto 2em;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.buttons button {
+  width: 310px;
+  padding: 10px 30px;
+  font-size: 20px;
+  background-color: #d960ae;
+  border: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  /* margin-right: 20px; */
+  margin-bottom: 15px;
+  transition: all 0.25s ease-in-out;
+}
+
+.buttons:hover {
+  background-color: darken(#d960ae, 10%);
+}
+
+.buttons #cancel, .buttons #unsubscribe{
+  display: none;
+  margin-right: 0;
+  color: #333;
+  background-color: #eddfeb;
+}
+
+.buttons #cancel:hover {
+  background-color: darken(#eddfeb, 10%);
+}
+
+.buttons #go-back {
+  display: block;
+}
+
+.buttons:focus {
+  border: none;
+  outline: 0;
+}
+
+#blob-3,
+#blob-2,
+#mouth-happy,
+#mouth-sad,
+#eyebrow-happy-left,
+#eyebrow-happy-right,
+#eyes-laughing,
+#open-mouth,
+#tongue,
+#mouth-scared {
+  display: none;
+}
+
+#back,
+#shadow-1,
+#Front,
+#Background,
+#shadow {
+  display: none;
+}
+
+@media (max-width: 699px) {
+  .container {
+    width: 90%;
+  }
+
+  .bottom {
+    margin-top: 1em;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 399px) {
+  .container {
+    padding: 80px 20px;
+  }
+
+  .bottom h2 {
+    font-size: 24px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons button {
+    margin-right: 0;
+  }
+
+  svg {
+    padding-top: 0;
+  }
+}

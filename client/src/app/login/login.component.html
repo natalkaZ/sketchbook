@@ -4,12 +4,24 @@
     <form [formGroup]="form" (ngSubmit)=onSubmit() class="login-form">
       <mat-form-field class="full-width">
         <input matInput type="text" placeholder="Your email" formControlName="email">
+        <mat-icon class="tooltip" color="primary"
+                  aria-label="Enter your valid email"
+                  matTooltip="Enter your valid email"
+                  matTooltipPosition="right">
+          error_outline
+        </mat-icon>
         <mat-error *ngIf="form.get('email').invalid && form.get('email').touched">
           <span *ngIf="form.get('email').errors['required']">Email is required</span>
           <span *ngIf="form.get('email').errors['pattern']">Email is not valid</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
+        <mat-icon class="tooltip" color="primary"
+                  aria-label="Enter your valid password"
+                  matTooltip="Enter your valid password"
+                  matTooltipPosition="right">
+          error_outline
+        </mat-icon>
         <input matInput type="password" placeholder="Password" formControlName="password">
         <mat-error *ngIf="form.get('password').invalid && form.get('password').touched">
           <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">

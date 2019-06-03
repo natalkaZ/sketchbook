@@ -1,0 +1,11 @@
+<div class="mat-dialog-wrapper">
+  <mat-card class="mat-dialog-card">
+    <mat-card-header>
+      <mat-card-title>Do you want to delete note about {{this.title}}?</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="delete(note)">delete</button>
+      <button mat-raised-button color="warn" (click)="cansel()">cansel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -2,16 +2,16 @@ const mongoose = require('mongoose')
 const Scema = mongoose.Schema
 
 const noteScema = new Scema({
-    name: {
+    title: {
         type: String,
         required: true
-    },
+    }, 
     description: {
         type: String,
         default: ''
     },
-    //не уверена или нужно это - номер заметки???
-    noteId: {
+    //??
+    _noteId: {
         type: Number,
         default: ''
     },

@@ -29,7 +29,12 @@
               },
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/gsap/src/uncompressed/TweenMax.js",
+              "node_modules/gsap/src/uncompressed/TimelineMax.js",
+              "node_modules/gsap/src/uncompressed/TweenLite.js",
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "production": {

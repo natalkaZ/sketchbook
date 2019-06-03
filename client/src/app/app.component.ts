@@ -9,12 +9,12 @@ import { AuthService } from './shared/services/auth.service';
 export class AppComponent implements OnInit {
   title = 'Hello in Notebook';
 
-  constructor(private auth: AuthService){}
+  constructor(private auth: AuthService) {}
 
-  ngOnInit(){
-    const potentialToken = localStorage.getItem('auth-token')
-    if(potentialToken !==null){
-      this.auth.setToken(potentialToken)
+  ngOnInit() {
+    const potentialToken = localStorage.getItem('auth-token');
+    if (potentialToken !== null) {
+      this.auth.setToken(potentialToken);
     }
   }
 }
