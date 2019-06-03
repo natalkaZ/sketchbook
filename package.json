@@ -10,6 +10,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "graceful-fs": "^4.1.13",
     "jquery": "^3.3.1",
     "jsonwebtoken": "^8.4.0",
     "moment": "^2.22.2",
@@ -31,10 +32,10 @@
   },
   "scripts": {
     "start": "node index",
-    "engines": { 
-      "node": "8.11.2", 
-      "npm": "5.6.0" 
-      },
+    "engines": {
+      "node": "8.11.2",
+      "npm": "5.6.0"
+    },
     "server": "nodemon index",
     "client-install": "npm install --prefix client",
     "client": "npm run start --prefix client",
