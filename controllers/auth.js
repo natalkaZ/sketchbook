@@ -135,12 +135,10 @@ module.exports.editProfile = async function (req, res) {
             const updeted = {
                 name: req.body.name,
                 phone: req.body.phone,
-                avatarSrc: req.file ? req.file.path : ''
+                avatarSrc: req.file ? req.file.path : decoded.avatarSrc
             };
 
-            if (req.file) {
-                updeted.avatarSrc = req.file.path;
-            }
+            console.log('updeted', updeted)
 
             await User.findOneAndUpdate(
                 { email: decoded.email },
@@ -159,9 +157,8 @@ module.exports.editProfile = async function (req, res) {
                             userId: user._id,
                             name: user.name,
                             phone: user.phone,
-                            avatarSrc: updeted.avatarSrc ? updeted.avatarSrc : decoded.avatarSrc
+                            avatarSrc: updeted.avatarSrc.length > 1 ? updeted.avatarSrc : decoded.avatarSrc
                         }, keys.jwt, { expiresIn: 60 * 60 });
-
                         res.status(200).json({
                             token: `Bearer ${token}`,
                             user: user

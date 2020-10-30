@@ -84,6 +84,8 @@ export class AuthService {
 
     if (image) {
       fd.append('image', image, image.name);
+      console.log('auth service updateUserProfile image' + image.name);
+      
     }
 
     fd.append('name', name);

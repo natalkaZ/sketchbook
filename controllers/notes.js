@@ -1,30 +1,30 @@
-const Note = require('../models/Note')
-const errorHandler = require('../utils/errorHandler')
+const Note = require('../models/Note');
+const errorHandler = require('../utils/errorHandler');
 
 // (get) localhost:5000/api/notes?offset=2&limit=5
 module.exports.showNotesList = async function(req,res){ //byUserId
     const query = { //для сортировки по дате
         user: req.user.id
-    }
+    };
     //дата старта
     if(req.query.start){
         query.date ={
             //больше или равно
             $gte: req.query.start
-        }
+        };
     }
     //дата конца
     if(req.query.end){
         if(!query.date){
-            query.date = {}
+            query.date = {};
         }
         //меньше или равно
-        query.date[$lte] = req.query.end
+        query.date[$lte] = req.query.end;
         
     }
     //не уверена или нужно это - номер заметки???
     if(req.query.noteId){
-        query.noteId = +req.query.noteId
+        query.noteId = +req.query.noteId;
     }
 
     try{
@@ -32,47 +32,48 @@ module.exports.showNotesList = async function(req,res){ //byUserId
         .find(query)
         .sort({date: -1})
         .skip(+req.query.offset)
-        .limit(+req.query.limit)
-        res.status(200).json(notes)
+        .limit(+req.query.limit);
+        res.status(200).json(notes);
     } catch(e){
-        errorHandler(res, e)
+        errorHandler(res, e);
     }
-}
+};
 
 module.exports.addNewNote = async function(req, res){
+    console.log(req.file);
     const note = new Note({
         title: req.body.title,
         description: req.body.description,
         date: req.body.date,
         imageSrc: req.file ? req.file.path : '',
         user: req.user.id
-    })
+    });
 
     try{ 
-        await note.save()
-        res.status(201).json({note})
+        await note.save();
+        res.status(201).json({note});
     } catch(e){
-       errorHandler(res, e)
+       errorHandler(res, e);
     }
- }
+ };
 
 module.exports.getNoteById = async function(req, res){
     try{
-        const note = await Note.findById(req.params.id)
-        res.status(200).json(note)
+        const note = await Note.findById(req.params.id);
+        res.status(200).json(note);
     } catch(e){
-        errorHandler(res, e)
+        errorHandler(res, e);
     }
-}
+};
 
 module.exports.editNote = async function(req, res){
     const updeted = {
         title: req.body.title,
         description: req.body.description
-    }
+    };
 
     if(req.file){
-        updeted.imageSrc = req.file.path
+        updeted.imageSrc = req.file.path;
     }
 
     try{
@@ -80,20 +81,20 @@ module.exports.editNote = async function(req, res){
             {_id: req.params.id},
             {$set: updeted},
             {new: true}
-        )
-        res.status(200).json(note)
+        );
+        res.status(200).json(note);
     } catch(e){
-        errorHandler(res, e)
+        errorHandler(res, e);
     }
-}
+};
 
 module.exports.deleteNote = async function(req,res){
    try{
-        await Note.remove({_id: req.params.id})
+        await Note.remove({_id: req.params.id});
         res.status(200).json({
             message: "Note has been deleted."
-        })
+        });
     } catch(e){
-        errorHandler(res, e)
+        errorHandler(res, e);
     }
-}
+};

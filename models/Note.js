@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Scema = mongoose.Schema
+const mongoose = require('mongoose');
+const Scema = mongoose.Schema;
 
 const noteScema = new Scema({
     title: {
@@ -27,6 +27,6 @@ const noteScema = new Scema({
         ref: 'users',
         type: Scema.Types.ObjectId
     }
-})
+});
 
-module.exports = mongoose.model('notes', noteScema)
+module.exports = mongoose.model('notes', noteScema);

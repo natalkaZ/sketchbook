@@ -8,44 +8,44 @@ import { Note, Message } from './interfaces';
 })
 
 export class NotesService {
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient) {}
 
-    fetch(): Observable<Note[]>{
-        return this.http.get<Note[]>('/api/notes')
+    fetch(): Observable<Note[]> {
+        return this.http.get<Note[]>('/api/notes');
     }
 
-    getById(id: string): Observable<Note>{
-        return this.http.get<Note>(`/api/notes/${id}`)
+    getById(id: string): Observable<Note> {
+        return this.http.get<Note>(`/api/notes/${id}`);
     }
 
-    create(title: string, description?: string, image?: File): Observable<Note>{
-        const fd = new FormData()
+    create(title: string, description?: string, image?: File): Observable<Note> {
+        const fd = new FormData();
 
-        if(image){
-            fd.append('image', image, image.name)
-        } 
+        if (image) {
+            fd.append('image', image, image.name);
+        }
 
-        fd.append('description', description)
-        fd.append('title', title)
+        fd.append('description', description);
+        fd.append('title', title);
 
-        return this.http.post<Note>('api/notes/', fd)
+        return this.http.post<Note>('api/notes/', fd);
     }
 
-    update(id: string, title: string, description?: string, image?: File): Observable<Note>{
-        const fd = new FormData()
+    update(id: string, title: string, description?: string, image?: File): Observable<Note> {
+        const fd = new FormData();
 
-        if(image){
-            fd.append('image', image, image.name)
-        } 
-        
-        fd.append('description', description)
-        fd.append('title', title)
+        if (image) {
+            fd.append('image', image, image.name);
+        }
 
-        return this.http.patch<Note>(`/api/notes/${id}`, fd)
+        fd.append('description', description);
+        fd.append('title', title);
+
+        return this.http.patch<Note>(`/api/notes/${id}`, fd);
     }
 
-    delete(id: string): Observable<Message>{
-        return this.http.delete<Message>(`/api/notes/${id}`)
+    delete(id: string): Observable<Message> {
+        return this.http.delete<Message>(`/api/notes/${id}`);
     }
 
 }

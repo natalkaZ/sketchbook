@@ -77,7 +77,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     reader.onload = () => {
       this.imagePreview = reader.result as string;
-      console.log('after onFileUpload this.imagePreview is: ' + this.imagePreview);
+      // console.log('after onFileUpload this.imagePreview is: ' + this.imagePreview);
+      console.log('after onFileUpload this.avatar is: ' + this.avatar);
     };
 
     reader.readAsDataURL(file);
@@ -89,15 +90,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  editProfile(user: User) {
-    this.user = user;
-    this.user = this.auth.getUserDetails();
-  }
+  // editProfile(user: User) {
+  //   this.user = user;
+  //   this.user = this.auth.getUserDetails();
+  //   console.log('Edit profile run!');
+  //   console.log('this.user', user);
+    
+  // }
 
   onSubmit() {
     let obs$;
     this.form.disable();
     obs$ = this.auth.updateUserProfile(this._id, this.form.value.name, this.form.value.phone, this.avatar);
+    console.log('this.user.avatarSrc', this.user.avatarSrc)
+    console.log('this.form.value.name: ' + this.form.value.name);
     console.log('obs$ works!!!');
     obs$.subscribe(
       user => {
